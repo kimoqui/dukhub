@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>덕후브 홈</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1A1A1A}a:hover{color:#444444}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; display: flex; flex-direction: column; font-family: 'Noto Sans KR', sans-serif; color: #1A1A1A; overflow: hidden">
+
+<header style="display: flex; align-items: center; justify-content: space-between; padding: 20px 16px 8px 20px">
+<div style="display: flex; align-items: center; gap: 8px">
+<div style="width: 32px; height: 32px; border-radius: 8px; background: #CCCCCC; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #333333">로고</div>
+<div style="font-size: 20px; font-weight: 700">덕후브</div>
+</div>
+<div style="display: flex; gap: 4px">
+<a href="W2-Search.dc.html" aria-label="검색" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 22px">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+</a>
+<a href="W5-Alerts.dc.html" aria-label="알림" style="position: relative; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 22px">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1112 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.9 1.9 0 003.4 0"></path></svg>
+<span style="position: absolute; top: 10px; right: 11px; width: 8px; height: 8px; border-radius: 4px; background: #1A1A1A"></span>
+</a>
+</div>
+</header>
+
+<div style="flex: 1; overflow: hidden; display: flex; flex-direction: column">
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 20px">
+<div style="font-size: 16px; font-weight: 700">내 구독 IP</div>
+<a href="W3-Following.dc.html" style="font-size: 13px; color: #666666">전체 보기</a>
+</div>
+<div style="display: flex; gap: 14px; overflow-x: auto; padding: 4px 20px 14px; border-bottom: 8px solid #F2F2F2">
+<sc-for list="{{subs}}" as="s" hint-placeholder-count="6">
+<button style="{{s.style}}">
+<span style="{{s.ringStyle}}">{{s.i}}</span>
+<span style="font-size: 11px; color: #444444; white-space: nowrap">{{s.n}}</span>
+</button>
+</sc-for>
+<a href="W2-Search.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex: none; width: 58px; text-decoration: none">
+<span style="width: 52px; height: 52px; border-radius: 26px; border: 1.5px dashed #999999; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666666" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span>
+<span style="font-size: 11px; color: #666666">IP 추가</span>
+</a>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px 6px">
+<div style="font-size: 16px; font-weight: 700">최신 소식</div>
+<span style="font-size: 12px; color: #666666">구독 IP 전체</span>
+</div>
+
+<div style="padding: 0 20px; overflow: hidden">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+<div style="font-size: 12px; font-weight: 700; color: #666666; margin: 10px 0 6px">{{g.label}}</div>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="2">
+<div style="display: flex; gap: 12px">
+<div style="width: 12px; display: flex; flex-direction: column; align-items: center">
+<span style="width: 10px; height: 10px; border-radius: 5px; border: 2px solid #1A1A1A; background: #FFFFFF; margin-top: 16px; flex: none"></span>
+<span style="flex: 1; width: 2px; background: #D9D9D9"></span>
+</div>
+<div style="flex: 1; margin-bottom: 10px; padding: 12px 14px; border-radius: 12px; border: 1px solid #E0E0E0; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<span style="font-size: 12px; font-weight: 700; color: #444444">{{it.ip}}</span>
+<span style="{{it.tagStyle}}">{{it.dday}}</span>
+</div>
+<div style="font-size: 14px; font-weight: 500; line-height: 1.4">{{it.title}}</div>
+<div style="font-size: 12px; color: #666666">{{it.date}}</div>
+</div>
+</div>
+</sc-for>
+</sc-for>
+</div>
+</div>
+
+<nav style="display: flex; justify-content: space-around; padding: 6px 4px 22px; border-top: 1px solid #E0E0E0; background: #FFFFFF">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+<a href="{{t.href}}" style="{{t.style}}">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="{{t.color}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{t.d}}"></path></svg>
+{{t.label}}
+</a>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const active = 0;
+    const defs = [
+      ['홈', 'W1-Home.dc.html', 'M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z'],
+      ['캘린더', 'W4-Calendar.dc.html', 'M4 6h16v14H4zM4 10h16M9 3v4M15 3v4'],
+      ['검색', 'W2-Search.dc.html', 'M11 4a7 7 0 100 14 7 7 0 000-14zM20 20l-3.5-3.5'],
+      ['마이페이지', 'W6-My.dc.html', 'M12 4a4 4 0 100 8 4 4 0 000-8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6']
+    ];
+    const tabs = defs.map(([label, href, d], i) => {
+      const on = i === active;
+      const color = on ? '#1A1A1A' : '#757575';
+      return { label, href, d, color, style: 'width:72px;height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-decoration:none;font-size:11px;color:' + color + ';font-weight:' + (on ? '700' : '400') };
+    });
+    const subs = [['A', '[IP A]', true], ['B', '[IP B]', true], ['C', '[IP C]', false], ['D', '[IP D]', false], ['E', '[IP E]', false], ['F', '[IP F]', false]]
+      .map(([i, n, isNew]) => ({
+        i, n,
+        style: 'display:flex;flex-direction:column;align-items:center;gap:4px;flex:none;width:58px;border:0;background:transparent;padding:0;font-family:inherit',
+        ringStyle: 'width:52px;height:52px;border-radius:26px;background:#E0E0E0;display:flex;align-items:center;justify-content:center;font-weight:700;color:#444444;box-sizing:border-box;' + (isNew ? 'border:2.5px solid #1A1A1A' : 'border:2.5px solid #FFFFFF')
+      }));
+    const tag = (urgent) => 'font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;' + (urgent ? 'background:#333333;color:#FFFFFF' : 'background:#F2F2F2;color:#444444');
+    const groups = [
+      { label: '오늘 · 11.1 (일)', items: [
+        { ip: '[IP A]', title: '[팝업스토어 사전예약 오픈 안내]', date: '11.1 (일) 20:00 오픈', dday: 'D-DAY', tagStyle: tag(true) },
+        { ip: '[IP B]', title: '[콜라보 카페 2차 예약 공지]', date: '11.1 (일) 22:00 오픈', dday: 'D-DAY', tagStyle: tag(true) }
+      ]},
+      { label: '이번 주', items: [
+        { ip: '[IP C]', title: '[한정 굿즈 응모 마감]', date: '11.3 (화) 12:00 마감', dday: 'D-2', tagStyle: tag(false) },
+        { ip: '[IP A]', title: '[행사 입장권 예매 일정 공개]', date: '11.5 (목) 18:00 오픈', dday: 'D-4', tagStyle: tag(false) }
+      ]}
+    ];
+    return { tabs, subs, groups };
+  }
+}
+</script>
+</body>
+</html>

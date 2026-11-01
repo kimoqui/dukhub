@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>덕후브 C안 덕질 다이어리</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#137A7F}a:hover{color:#0E5D61}
+</style>
+</helmet>
+<div style="width: 1285px; height: 880px; box-sizing: border-box; padding: 50px 40px; background: #F7E4EA; display: flex; gap: 40px; font-family: 'Gowun Dodum', sans-serif; color: #1A1C1E">
+
+<!-- C1 최애 고르기 -->
+<div style="width: 375px; height: 780px; border-radius: 36px; background: #F8F9FA; overflow: hidden; box-shadow: 0 10px 0 #F2CBD6; display: flex; flex-direction: column; box-sizing: border-box; padding: 38px 22px 22px">
+<div style="font-family: 'Jua', sans-serif; font-size: 20px; color: #137A7F">덕후브</div>
+<h1 style="margin: 12px 0 6px; font-family: 'Jua', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.3">내 최애를<br>콕콕 골라주세요</h1>
+<p style="margin: 0 0 22px; font-size: 15px; line-height: 1.5; color: #6B5E70">고른 작품의 예약이 열리기 30분 전에 똑똑 알려드릴게요.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start; flex: 1">
+<sc-for list="{{ips}}" as="ip" hint-placeholder-count="12">
+<button style="{{ip.style}}">
+<sc-if value="{{ip.on}}" hint-placeholder-val="{{ true }}">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1A1C1E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>
+</sc-if>
+{{ip.name}}
+</button>
+</sc-for>
+</div>
+<div style="padding: 14px 16px; border-radius: 18px; background: #FFFFFF; border: 2px dashed #F2CBD6; font-size: 14px; color: #6B5E70; margin-bottom: 12px">찾는 작품이 없나요? <a href="#request" style="font-weight: 700">작품 추가 요청하기</a></div>
+<button style="height: 56px; border-radius: 28px; border: 2px solid #1A1C1E; background: #FF779A; color: #1A1C1E; font-family: 'Jua', sans-serif; font-size: 19px; box-shadow: 0 4px 0 #1A1C1E">3개 골랐어요!</button>
+</div>
+
+<!-- C2 이번 주 캘린더 -->
+<div style="width: 375px; height: 780px; border-radius: 36px; background: #F8F9FA; overflow: hidden; box-shadow: 0 10px 0 #F2CBD6; display: flex; flex-direction: column; box-sizing: border-box; padding: 38px 20px 22px">
+<div style="display: flex; justify-content: space-between; align-items: flex-end">
+<h1 style="margin: 0; font-family: 'Jua', sans-serif; font-weight: 400; font-size: 26px">11월 첫째 주</h1>
+<span style="font-size: 14px; color: #6B5E70">놓치면 안 될 오픈 4개</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; margin-top: 18px">
+<sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+<button style="{{d.style}}">
+<span style="font-size: 12px">{{d.dow}}</span>
+<span style="font-family: 'Jua', sans-serif; font-size: 19px">{{d.num}}</span>
+<span style="{{d.dotStyle}}"></span>
+</button>
+</sc-for>
+</div>
+<div style="font-family: 'Jua', sans-serif; font-size: 17px; margin: 22px 0 12px">오늘, 11월 1일</div>
+<div style="display: flex; flex-direction: column; gap: 16px; flex: 1">
+<sc-for list="{{cards}}" as="c" hint-placeholder-count="2">
+<div style="{{c.style}}">
+<span style="{{c.tapeStyle}}"></span>
+<div style="display: flex; justify-content: space-between; align-items: center">
+<span style="font-family: 'Jua', sans-serif; font-size: 14px; padding: 3px 10px; border-radius: 10px; background: #FFFFFF; border: 1.5px solid #1A1C1E">{{c.ip}}</span>
+<span style="font-family: 'Jua', sans-serif; font-size: 22px">{{c.time}}</span>
+</div>
+<div style="font-family: 'Jua', sans-serif; font-size: 19px; margin-top: 10px">{{c.title}}</div>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font-size: 14px">
+<span>{{c.where}}</span>
+<span style="display: flex; align-items: center; gap: 4px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1A1C1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1112 0c0 7 3 9 3 9H3s3-2 3-9"></path></svg>{{c.alarm}}</span>
+</div>
+</div>
+</sc-for>
+</div>
+<nav style="display: flex; justify-content: space-around; padding: 8px; border-radius: 26px; background: #1A1C1E">
+<button style="height: 44px; padding: 0 16px; border-radius: 22px; border: 0; background: #FFDCE4; color: #1A1C1E; font-family: 'Jua', sans-serif; font-size: 15px">캘린더</button>
+<button style="height: 44px; padding: 0 16px; border-radius: 22px; border: 0; background: transparent; color: #F8F9FA; font-family: 'Jua', sans-serif; font-size: 15px">알림함</button>
+<button style="height: 44px; padding: 0 16px; border-radius: 22px; border: 0; background: transparent; color: #F8F9FA; font-family: 'Jua', sans-serif; font-size: 15px">내 최애</button>
+</nav>
+</div>
+
+<!-- C3 알림함 → 바로가기 -->
+<div style="width: 375px; height: 780px; border-radius: 36px; background: #F8F9FA; overflow: hidden; box-shadow: 0 10px 0 #F2CBD6; display: flex; flex-direction: column; box-sizing: border-box; padding: 38px 20px 22px">
+<h1 style="margin: 0; font-family: 'Jua', sans-serif; font-weight: 400; font-size: 26px">알림함</h1>
+<p style="margin: 6px 0 18px; font-size: 14px; color: #6B5E70">알림을 누르면 예약 페이지로 바로 가요.</p>
+<div style="position: relative; padding: 18px; border-radius: 22px; background: #FFDCE4; border: 2px solid #1A1C1E; box-shadow: 0 5px 0 #1A1C1E">
+<div style="display: flex; justify-content: space-between; font-size: 13px"><span style="font-weight: 700">방금 전 · 30분 전 알림</span><span style="font-family: 'Jua', sans-serif; padding: 2px 10px; border-radius: 10px; background: #FF779A; color: #1A1C1E">새 알림</span></div>
+<div style="font-family: 'Jua', sans-serif; font-size: 21px; line-height: 1.35; margin-top: 8px">블루 아카이브 팝업스토어<br>사전예약이 20:00에 열려요</div>
+<div style="margin-top: 14px; padding: 12px 14px; border-radius: 16px; background: #FFFFFF; border: 1.5px solid #1A1C1E; display: flex; align-items: center; gap: 10px">
+<div style="width: 40px; height: 40px; border-radius: 12px; background: #86CECB; display: flex; align-items: center; justify-content: center">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A1C1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg>
+</div>
+<div style="flex: 1">
+<div style="font-size: 12px; color: #6B5E70">예약 페이지</div>
+<div style="font-weight: 700; font-size: 15px">네이버 예약 · 선착순</div>
+</div>
+</div>
+<button style="margin-top: 14px; width: 100%; height: 54px; border-radius: 27px; border: 2px solid #1A1C1E; background: #FF779A; color: #1A1C1E; font-family: 'Jua', sans-serif; font-size: 18px; box-shadow: 0 4px 0 #1A1C1E">예약하러 바로가기</button>
+</div>
+<div style="font-family: 'Jua', sans-serif; font-size: 16px; margin: 24px 0 10px">지난 알림</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{past}}" as="p" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; background: #FFFFFF; border: 1.5px solid #F2CBD6">
+<span style="{{p.dotStyle}}"></span>
+<div style="flex: 1; min-width: 0">
+<div style="font-size: 12px; color: #6B5E70">{{p.when}} · {{p.ip}}</div>
+<div style="font-weight: 700; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{p.title}}</div>
+</div>
+<button style="height: 44px; padding: 0 14px; border-radius: 22px; border: 1.5px solid #1A1C1E; background: #F8F9FA; color: #1A1C1E; font-family: 'Jua', sans-serif; font-size: 14px">열기</button>
+</div>
+</sc-for>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1285,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const pal = ['#FFB7C5', '#86CECB', '#C9ECE9', '#FFDCE4'];
+    const raw = [
+      ['블루 아카이브', true], ['원피스', true], ['홀로라이브', true], ['원신', false],
+      ['주술회전', false], ['프로젝트 세카이', false], ['귀멸의 칼날', false],
+      ['붕괴: 스타레일', false], ['나 혼자만 레벨업', false], ['명일방주', false],
+      ['니지산지', false], ['하이큐!!', false]
+    ];
+    const ips = raw.map(([name, on], i) => ({
+      name, on,
+      style: 'display:flex;align-items:center;gap:6px;height:46px;padding:0 18px;border-radius:23px;font-family:Jua,sans-serif;font-size:16px;color:#1A1C1E;' + (on ? 'background:' + pal[i % 4] + ';border:2px solid #1A1C1E;box-shadow:0 3px 0 #1A1C1E' : 'background:#FFFFFF;border:2px solid #F2CBD6')
+    }));
+    const dots = { 1: '#FF779A', 3: '#86CECB', 5: '#C9ECE9', 7: '#FFDCE4' };
+    const dows = ['일', '월', '화', '수', '목', '금', '토'];
+    const days = dows.map((dow, i) => {
+      const num = i + 1;
+      const today = num === 1;
+      return {
+        dow, num,
+        style: 'display:flex;flex-direction:column;align-items:center;gap:2px;height:72px;justify-content:center;border-radius:16px;font-family:inherit;color:#1A1C1E;' + (today ? 'background:#1A1C1E;color:#F8F9FA;border:0' : 'background:transparent;border:0'),
+        dotStyle: 'width:8px;height:8px;border-radius:4px;background:' + (dots[num] || 'transparent') + (dots[num] ? ';border:1.5px solid ' + (today ? '#F8F9FA' : '#1A1C1E') : '')
+      };
+    });
+    const cardBase = 'position:relative;padding:18px 16px 16px;border-radius:20px;border:2px solid #1A1C1E;';
+    const tapeBase = 'position:absolute;top:-10px;left:50%;width:64px;height:18px;margin-left:-32px;border-radius:3px;opacity:0.85;';
+    const cards = [
+      { ip: '블루 아카이브', time: '20:00', title: '팝업스토어 사전예약', where: '네이버 예약', alarm: '19:30 알림', style: cardBase + 'background:#FFB7C5;transform:rotate(-1.2deg)', tapeStyle: tapeBase + 'background:#C9ECE9;transform:rotate(3deg)' },
+      { ip: '홀로라이브', time: '22:00', title: '콜라보 카페 2차 예약', where: '카카오 예약', alarm: '21:30 알림', style: cardBase + 'background:#86CECB;transform:rotate(1deg)', tapeStyle: tapeBase + 'background:#FFDCE4;transform:rotate(-4deg)' }
+    ];
+    const past = [
+      { when: '어제', ip: '원피스', title: '굿즈 응모 오픈', dotStyle: 'width:12px;height:12px;border-radius:6px;background:#FFB7C5;border:1.5px solid #1A1C1E' },
+      { when: '10.30', ip: '홀로라이브', title: '콜라보 카페 1차 예약', dotStyle: 'width:12px;height:12px;border-radius:6px;background:#86CECB;border:1.5px solid #1A1C1E' },
+      { when: '10.28', ip: '블루 아카이브', title: '한정 굿즈 예약판매', dotStyle: 'width:12px;height:12px;border-radius:6px;background:#C9ECE9;border:1.5px solid #1A1C1E' }
+    ];
+    return { ips, days, cards, past };
+  }
+}
+</script>
+</body>
+</html>

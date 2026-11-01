@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>덕후브 MVP 프로토타입</title>
+<style>
+:root{--bg:#F8F9FA;--surface:#FFFFFF;--text:#1A1C1E;--sub:#5B6066;--line:#E1E4E8;--accent:#137A7F;--pink:#FF779A}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR","Noto Sans CJK KR",sans-serif;line-height:1.6}
+main{max-width:1200px;margin:0 auto;padding:48px 16px 80px}
+header h1{margin:0;font-size:34px;line-height:1.25}
+header p{margin:10px 0 0;color:var(--sub);font-size:16px;max-width:720px}
+.tag{display:inline-block;font-size:13px;font-weight:700;color:var(--accent);margin-bottom:8px}
+section{margin-top:56px}
+h2{font-size:22px;margin:0 0 6px}
+.desc{color:var(--sub);margin:0 0 20px;font-size:15px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0;padding:0;list-style:none}
+.flow li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.frame{width:100%;aspect-ratio:390/844;overflow:hidden;border-radius:14px;border:1px solid var(--line);position:relative;background:#fff}
+.frame iframe{position:absolute;top:0;left:0;width:390px;height:844px;border:0;transform-origin:0 0}
+.card h3{margin:0;font-size:16px}
+.card p{margin:0;color:var(--sub);font-size:14px}
+.card a{color:var(--accent);font-weight:700;font-size:14px}
+.concepts{display:flex;flex-direction:column;gap:24px}
+.concept img{width:100%;height:auto;border-radius:14px;border:1px solid var(--line);display:block}
+footer{margin-top:64px;color:var(--sub);font-size:13px}
+</style>
+</head>
+<body>
+<main>
+<header>
+<span class="tag">서브컬처 팬덤 올인원 플랫폼 · MVP</span>
+<h1>덕후브</h1>
+<p>구독한 작품(IP)의 굿즈·팝업·콜라보 카페 예약이 열리기 전에 알려주고, 알림을 누르면 예약 페이지로 바로 이동하는 앱입니다. 아래는 MVP 화면 구성 와이어프레임과 스타일 시안입니다.</p>
+<ul class="flow">
+<li>① IP 구독</li><li>② 오픈 일정 확인</li><li>③ 오픈 30분 전 알림</li><li>④ 예약 페이지 바로가기</li>
+</ul>
+</header>
+
+<section>
+<h2>화면 구성 (와이어프레임)</h2>
+<p class="desc">각 화면의 "크게 보기"를 누르면 탭바와 버튼으로 다른 화면으로 이동해 볼 수 있어요.</p>
+<div class="grid">
+<div class="card"><div class="frame"><iframe src="screens/W1-Home.dc.html" title="홈 화면" loading="lazy" scrolling="no"></iframe></div><h3>① 홈</h3><p>구독 IP 가로 목록, 구독 IP 최신 소식 타임라인(IP명·제목·날짜·D-day)</p><a href="screens/W1-Home.dc.html">크게 보기</a></div>
+<div class="card"><div class="frame"><iframe src="screens/W2-Search.dc.html" title="IP 검색 화면" loading="lazy" scrolling="no"></iframe></div><h3>② IP 검색</h3><p>검색창, 분류 필터, 최근 검색어, 오픈 많은 IP 순위와 구독 버튼</p><a href="screens/W2-Search.dc.html">크게 보기</a></div>
+<div class="card"><div class="frame"><iframe src="screens/W3-Following.dc.html" title="구독 관리 화면" loading="lazy" scrolling="no"></iframe></div><h3>③ 구독 관리</h3><p>구독 IP 목록, IP별 알림 켜기/끄기, 정렬, IP 추가</p><a href="screens/W3-Following.dc.html">크게 보기</a></div>
+<div class="card"><div class="frame"><iframe src="screens/W4-Calendar.dc.html" title="캘린더 화면" loading="lazy" scrolling="no"></iframe></div><h3>④ 캘린더</h3><p>월간 달력, 일정 종류 필터, 선택한 날의 오픈 일정</p><a href="screens/W4-Calendar.dc.html">크게 보기</a></div>
+<div class="card"><div class="frame"><iframe src="screens/W5-Alerts.dc.html" title="알림 설정 화면" loading="lazy" scrolling="no"></iframe></div><h3>⑤ 알림 설정</h3><p>알림 시점(기본 30분 전), 알림 종류, 방해 금지 시간, IP별 알림</p><a href="screens/W5-Alerts.dc.html">크게 보기</a></div>
+<div class="card"><div class="frame"><iframe src="screens/W6-My.dc.html" title="마이페이지 화면" loading="lazy" scrolling="no"></iframe></div><h3>⑥ 마이페이지</h3><p>프로필, 구독·알림 요약, 구독 관리·알림 설정 메뉴</p><a href="screens/W6-My.dc.html">크게 보기</a></div>
+</div>
+</section>
+
+<section>
+<h2>스타일 시안</h2>
+<p class="desc">같은 MVP 흐름을 세 가지 분위기로 표현한 시안입니다. 민트(#39C5BB)·핑크(#FF779A) 팔레트 적용.</p>
+<div class="concepts">
+<div class="concept"><img src="images/concept-A-timeline.png" alt="A안 오픈 타임라인 시안 화면 3장"><h3>A안 — 오픈 타임라인 (라이트·정보형)</h3></div>
+<div class="concept"><img src="images/concept-B-ticket.png" alt="B안 카운트다운 티켓 시안 화면 3장"><h3>B안 — 카운트다운 티켓 (다크·긴장감)</h3></div>
+<div class="concept"><img src="images/concept-C-sticker.png" alt="C안 덕질 다이어리 시안 화면 3장"><h3>C안 — 덕질 다이어리 (파스텔·감성형)</h3></div>
+</div>
+</section>
+
+<footer>화면 속 IP 이름과 일정은 예시 데이터입니다.</footer>
+</main>
+<script>
+function fit(){document.querySelectorAll('.frame').forEach(function(f){var i=f.querySelector('iframe');i.style.transform='scale('+(f.clientWidth/390)+')';});}
+window.addEventListener('resize',fit);window.addEventListener('load',fit);fit();
+</script>
+</body>
+</html>

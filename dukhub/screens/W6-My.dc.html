@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>덕후브 마이페이지</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1A1A1A}a:hover{color:#444444}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; display: flex; flex-direction: column; font-family: 'Noto Sans KR', sans-serif; color: #1A1A1A; overflow: hidden">
+
+<div style="flex: 1; overflow: hidden; display: flex; flex-direction: column">
+<h1 style="margin: 0; padding: 24px 20px 12px; font-size: 20px; font-weight: 700">마이페이지</h1>
+
+<div style="display: flex; align-items: center; gap: 14px; padding: 4px 20px 16px">
+<div style="width: 64px; height: 64px; border-radius: 32px; background: #E0E0E0; display: flex; align-items: center; justify-content: center">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>
+</div>
+<div style="flex: 1">
+<div style="font-size: 17px; font-weight: 700">[닉네임]</div>
+<div style="font-size: 13px; color: #666666">[이메일 또는 소셜 로그인 계정]</div>
+</div>
+<button style="height: 36px; padding: 0 12px; border-radius: 18px; border: 1px solid #D9D9D9; background: #FFFFFF; font-size: 13px; font-family: inherit; color: #1A1A1A">프로필 수정</button>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0 20px; border-radius: 14px; background: #F2F2F2; padding: 14px 0">
+<a href="W3-Following.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: #1A1A1A">
+<span style="font-size: 20px; font-weight: 700">6</span><span style="font-size: 12px; color: #666666">구독 IP</span></a>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 2px; border-left: 1px solid #D9D9D9; border-right: 1px solid #D9D9D9">
+<span style="font-size: 20px; font-weight: 700">5</span><span style="font-size: 12px; color: #666666">예정 알림</span></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 2px">
+<span style="font-size: 20px; font-weight: 700">24</span><span style="font-size: 12px; color: #666666">받은 알림</span></div>
+</div>
+
+<div style="height: 8px; background: #F2F2F2; margin-top: 18px"></div>
+<sc-for list="{{sections}}" as="sec" hint-placeholder-count="2">
+<div style="padding: 16px 20px 4px; font-size: 13px; font-weight: 700; color: #666666">{{sec.title}}</div>
+<sc-for list="{{sec.rows}}" as="r" hint-placeholder-count="3">
+<a href="{{r.href}}" style="display: flex; align-items: center; gap: 12px; padding: 0 20px; height: 50px; text-decoration: none; color: #1A1A1A">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#444444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.d}}"></path></svg>
+<span style="flex: 1; font-size: 15px">{{r.label}}</span>
+<span style="font-size: 13px; color: #666666">{{r.meta}}</span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg>
+</a>
+</sc-for>
+</sc-for>
+<button style="margin: 8px 20px 0; height: 44px; border: 0; background: transparent; font-size: 13px; color: #666666; text-align: left; padding: 0; font-family: inherit">로그아웃</button>
+</div>
+
+<nav style="display: flex; justify-content: space-around; padding: 6px 4px 22px; border-top: 1px solid #E0E0E0; background: #FFFFFF">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+<a href="{{t.href}}" style="{{t.style}}">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="{{t.color}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{t.d}}"></path></svg>
+{{t.label}}
+</a>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const active = 3;
+    const defs = [
+      ['홈', 'W1-Home.dc.html', 'M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z'],
+      ['캘린더', 'W4-Calendar.dc.html', 'M4 6h16v14H4zM4 10h16M9 3v4M15 3v4'],
+      ['검색', 'W2-Search.dc.html', 'M11 4a7 7 0 100 14 7 7 0 000-14zM20 20l-3.5-3.5'],
+      ['마이페이지', 'W6-My.dc.html', 'M12 4a4 4 0 100 8 4 4 0 000-8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6']
+    ];
+    const tabs = defs.map(([label, href, d], i) => {
+      const on = i === active;
+      const color = on ? '#1A1A1A' : '#757575';
+      return { label, href, d, color, style: 'width:72px;height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-decoration:none;font-size:11px;color:' + color + ';font-weight:' + (on ? '700' : '400') };
+    });
+    const sections = [
+      { title: '덕질 관리', rows: [
+        { label: '구독 관리', meta: '6개', href: 'W3-Following.dc.html', d: 'M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.5-7 10-7 10z' },
+        { label: '알림 설정', meta: '30분 전·정각', href: 'W5-Alerts.dc.html', d: 'M6 8a6 6 0 1112 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 003.4 0' },
+        { label: '알림 기록', meta: '', href: '#history', d: 'M12 7v5l3 2M12 3a9 9 0 100 18 9 9 0 000-18z' }
+      ]},
+      { title: '고객 지원', rows: [
+        { label: '공지사항', meta: '', href: '#notice', d: 'M4 5h16v12H8l-4 4z' },
+        { label: '작품 추가 요청', meta: '', href: '#request', d: 'M12 5v14M5 12h14' },
+        { label: '앱 설정', meta: 'v0.1', href: '#settings', d: 'M12 9a3 3 0 100 6 3 3 0 000-6zM4 12h2M18 12h2M12 4v2M12 18v2' }
+      ]}
+    ];
+    return { tabs, sections };
+  }
+}
+</script>
+</body>
+</html>

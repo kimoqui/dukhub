@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>덕후브 구독 관리</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1A1A1A}a:hover{color:#444444}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; display: flex; flex-direction: column; font-family: 'Noto Sans KR', sans-serif; color: #1A1A1A; overflow: hidden">
+
+<header style="display: flex; align-items: center; gap: 4px; padding: 16px 12px 8px">
+<a href="W1-Home.dc.html" aria-label="뒤로" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
+</a>
+<h1 style="margin: 0; font-size: 18px; font-weight: 700; flex: 1">구독 관리</h1>
+<button style="height: 44px; padding: 0 12px; border: 0; background: transparent; font-size: 14px; color: #666666; font-family: inherit">편집</button>
+</header>
+
+<div style="padding: 0 20px; display: flex; flex-direction: column; flex: 1; overflow: hidden">
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0 12px">
+<span style="font-size: 14px"><span style="font-weight: 700">6개</span> IP 구독 중</span>
+<div style="display: flex; gap: 6px">
+<button style="height: 32px; padding: 0 12px; border-radius: 16px; border: 0; background: #333333; color: #FFFFFF; font-size: 12px; font-weight: 700; font-family: inherit">최근 추가순</button>
+<button style="height: 32px; padding: 0 12px; border-radius: 16px; border: 1px solid #D9D9D9; background: #FFFFFF; color: #1A1A1A; font-size: 12px; font-family: inherit">일정 많은 순</button>
+</div>
+</div>
+
+<div style="padding: 12px 14px; border-radius: 12px; background: #F2F2F2; font-size: 13px; color: #444444; line-height: 1.5; margin-bottom: 8px">IP별로 알림을 끄면 해당 IP 소식은 홈 피드에만 보이고 푸시는 오지 않아요.</div>
+
+<div style="display: flex; flex-direction: column">
+<sc-for list="{{ips}}" as="ip" hint-placeholder-count="6">
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #EEEEEE">
+<div style="width: 48px; height: 48px; border-radius: 24px; background: #E0E0E0; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #444444">{{ip.i}}</div>
+<div style="flex: 1">
+<div style="font-size: 15px; font-weight: 500">{{ip.name}}</div>
+<div style="font-size: 12px; color: #666666">{{ip.meta}}</div>
+</div>
+<button aria-label="{{ip.aria}}" aria-pressed="{{ip.on}}" style="{{ip.trackStyle}}"><span style="{{ip.knobStyle}}"></span></button>
+<button aria-label="더보기" style="width: 36px; height: 44px; border: 0; background: transparent; display: flex; align-items: center; justify-content: center">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="#666666" aria-hidden="true"><circle cx="12" cy="5" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="12" cy="19" r="1.8"></circle></svg>
+</button>
+</div>
+</sc-for>
+</div>
+<div style="flex: 1"></div>
+<a href="W2-Search.dc.html" style="height: 52px; margin-bottom: 12px; border-radius: 12px; border: 1.5px dashed #999999; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; font-size: 15px; font-weight: 500; color: #1A1A1A">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>IP 더 구독하기</a>
+</div>
+
+<nav style="display: flex; justify-content: space-around; padding: 6px 4px 22px; border-top: 1px solid #E0E0E0; background: #FFFFFF">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+<a href="{{t.href}}" style="{{t.style}}">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="{{t.color}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{t.d}}"></path></svg>
+{{t.label}}
+</a>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const active = 3;
+    const defs = [
+      ['홈', 'W1-Home.dc.html', 'M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z'],
+      ['캘린더', 'W4-Calendar.dc.html', 'M4 6h16v14H4zM4 10h16M9 3v4M15 3v4'],
+      ['검색', 'W2-Search.dc.html', 'M11 4a7 7 0 100 14 7 7 0 000-14zM20 20l-3.5-3.5'],
+      ['마이페이지', 'W6-My.dc.html', 'M12 4a4 4 0 100 8 4 4 0 000-8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6']
+    ];
+    const tabs = defs.map(([label, href, d], i) => {
+      const on = i === active;
+      const color = on ? '#1A1A1A' : '#757575';
+      return { label, href, d, color, style: 'width:72px;height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-decoration:none;font-size:11px;color:' + color + ';font-weight:' + (on ? '700' : '400') };
+    });
+    const raw = [
+      ['A', '[IP A]', '게임 · 예정 일정 3건', true], ['B', '[IP B]', '버튜버 · 예정 일정 2건', true],
+      ['C', '[IP C]', '애니 · 예정 일정 1건', true], ['D', '[IP D]', '웹툰 · 예정 일정 없음', false],
+      ['E', '[IP E]', '게임 · 예정 일정 1건', true], ['F', '[IP F]', '애니 · 예정 일정 없음', false]
+    ];
+    const ips = raw.map(([i, name, meta, on]) => ({
+      i, name, meta, on: on ? 'true' : 'false',
+      aria: name + ' 알림',
+      trackStyle: 'position:relative;width:48px;height:28px;border-radius:14px;border:0;padding:0;' + (on ? 'background:#333333' : 'background:#CCCCCC'),
+      knobStyle: 'position:absolute;top:3px;width:22px;height:22px;border-radius:11px;background:#FFFFFF;' + (on ? 'left:23px' : 'left:3px')
+    }));
+    return { tabs, ips };
+  }
+}
+</script>
+</body>
+</html>
